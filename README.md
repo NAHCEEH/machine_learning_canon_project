@@ -42,8 +42,6 @@
 | **Remove** | 파일을 삭제하는 작업만 수행한 경우 |
 
 ---
-
----
 ## 팀원 역할 
 | 파트 | 이름 | 주요 역할 |
 | :--- | :---: | :--- |
@@ -63,3 +61,35 @@
 ## 시작하기 
 * 본 프로그램은 비전문가도 쉽게 사용할 수 있도록 설계되었습니다.
 * 자세한 설치 방법은 `docs/INSTALL.md`를 참고하세요. (추후 업데이트 예정)
+
+* ---
+* ## 📂 프로젝트 폴더 구조 (Project Directory Structure)
+
+본 프로젝트는 인식-판단-표시가 하나로 이어지는 완성형 시스템 구축을 위해 아래와 같은 구조로 운영됩니다
+
+```text
+hanyang-ml-canon-project/
+├── ai-core/                # AI 모델 및 핵심 판단 로직 
+│   ├── models/             # 학습된 Target 1~4 모델 가중치 보관 
+│   ├── src/                
+│   │   ├── detection.py    # 타겟 검출 알고리즘 엔진 (Object/Anomaly Detection)
+│   │   └── state_machine.py# 순차적 등장 여부 판별 및 상태 관리 로직 
+│   └── evaluation/         # Sequence Accuracy 등 성능 지표 평가 
+│
+├── backend/                # 시스템 통합 및 실시간 처리 
+│   ├── app/                # 영상 데이터 처리 API 서버
+│   ├── streaming/          # 실시간 카메라 연결 및 영상 파이프라인
+│   └── logs/               # 오탐 사례 분석 및 성능 개선용 기록 저장 
+│
+├── frontend/               # 사용자 인터페이스 
+│   └── src/                
+│       ├── components/     # 현재 단계 및 신뢰도 시각화 요소
+│       └── views/          # 테스트/실시간 검사 모드 화면 분리 
+│
+├── data/                   # 데이터 관리 (보안을 위해 .gitkeep만 공유) 
+│   ├── sample_images/      # 테스트용 정지 이미지 데이터
+│   └── sample_videos/      # 테스트용 동영상 데이터 
+│
+└── docs/                   # 프로젝트 문서 및 지식 자산 
+    ├── ppt/                # 문제 정의 및 발표 자료 보관 
+    └── api_spec.md         # FE-BE 간 인터페이스 정의서
